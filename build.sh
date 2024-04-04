@@ -1,14 +1,17 @@
-@echo off
+#!/bin/bash
 
-if not exist build mkdir build
+if [ ! -d "build" ]; then
+    mkdir build
+fi
+
 cd build
-if not exist ".git" git clone https://github.com/Gagaved/OS_Labs .
-cd ..
 
-cd OS_Labs
+if [ ! -d ".git" ]; then
+    git clone https://github.com/Gagaved/OS_Labs .
+fi
+
 git pull
-cd ..
 
-cd build
 cmake ..
-cmake --build . --config Release
+
+make
